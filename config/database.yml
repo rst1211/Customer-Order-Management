@@ -19,14 +19,14 @@ default: &default
 
 development:
   <<: *default
-  database: CustomerOrderManagement_development
+  database: CustomerOrderManagment_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: CustomerOrderManagement_test
+  database: CustomerOrderManagment_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -47,28 +47,8 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-
-default: 
-    adapter: mysql2
-    encoding: utf8
-    database: CustomerOrderManagement_development
-    username: root
-    password: root
-    host: localhost
-    pool: 5
-
-# development:    kay
-#     adapter: mysql2
-#     encoding: utf8
-#     database: simple_cms_development
-#     username: simple_cms
-#     password: root
-#     host: localhost
-#     socket: /tmp/mysql.sock
-#     pool: 5
 production:
   <<: *default
-  database: CustomerOrderManagement_production
-  username: CustomerOrderManagement
-  password: <%= ENV['CUSTOMERORDERMANAGEMENT_DATABASE_PASSWORD'] %>
-
+  database: CustomerOrderManagment_production
+  username: CustomerOrderManagment
+  password: <%= ENV['CUSTOMERORDERMANAGMENT_DATABASE_PASSWORD'] %>

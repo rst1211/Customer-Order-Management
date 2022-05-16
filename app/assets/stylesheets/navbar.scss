@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
+
+header.header__nav {
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    height: 70px;
+    background-color: rgb(26, 162, 162);
+    color: #fff;
+
+    nav.navbar__header {
+        display: flex;
+        height: 100%;
+        width: 70%;
+        margin: auto;
+        justify-content: space-between;
+        align-items: center;
+
+        h1 {
+            font-family: 'Oleo Script Swash Caps', cursive;
+            cursor: pointer;
+        }
+
+        div.authenticaion__links {
+            display: flex;
+            
+            
+            justify-content: space-between;
+            span {
+                font-family: 'Libre Baskerville', serif;
+                cursor: pointer;
+                transition: .4s;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // box-shadow: 0px 0px 7px #666;
+                border-radius: 10px;
+                padding: 5px 10px;
+                // padding: ;
+
+                &:hover {
+                    color: #ccc;
+                    transform: scale(.9);
+                }
+            }
+        }
+        
+    }
+
+}

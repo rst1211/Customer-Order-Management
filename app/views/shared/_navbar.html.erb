@@ -1,0 +1,20 @@
+<header class="header__nav">
+
+    <nav class="navbar__header">
+        <h1><%= link_to "Customer Order Management", root_path %></h1>
+    
+
+    <div class="authenticaion__links">
+        <% if user_signed_in? %>
+        <span><i class="fa-solid fa-user"></i> &nbsp; <%= link_to "Hello, "+current_user.email, edit_user_registration_path %>&nbsp;</span>
+        <span><%= link_to "Sign Out", destroy_user_session_path, method: :delete %>&nbsp;&nbsp; <i class="fa-solid fa-right-from-bracket"></i></span>
+        <% else %>
+        <span><i class="fa-solid fa-right-to-bracket"></i> &nbsp;&nbsp;  <%= link_to "Sign In", new_user_session_path %> </span>
+        <span><i class="fa-solid fa-user-plus"></i> &nbsp;&nbsp; <%= link_to "Sign Up", new_user_registration_path %></span>
+        <% end %>
+    </div>
+
+    </nav>
+
+
+</header>
