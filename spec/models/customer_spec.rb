@@ -8,4 +8,10 @@ RSpec.describe Customer, type: :model do
     end
   end
 
+  describe 'validations' do
+    describe 'it validates phone' do
+      it { is_expected.to validate_presence_of(:phone) }
+    end
+  end
+
 end
