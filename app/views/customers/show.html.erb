@@ -1,0 +1,32 @@
+<div class="container mt-5 p-5 shadow">
+
+    <div class="jumbotron">
+        <h1 class="display-4"><%= @customer.name %></h1>
+        <hr>
+        <p class="lead"> <b>Email :</b> <%= @customer.email %></p>
+        <p class="lead"> <b>Phone No :</b>+91-<%= @customer.phone %></p>
+        <p class="lead"> <b>Address :</b> <%= @customer.address %></p>
+        <hr>
+
+        <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between">
+                <a class="margin__right btn btn-success" href=/update-customer/<%= @customer.id %> >Edit</a>
+                
+                <%= link_to "Delete", delete_customer_path(@customer.id),method: :delete,data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+
+            </div>
+     
+            <%= link_to "Go Back", root_path , class: "btn btn-info"%>
+        </div>
+        <hr>
+        <h3 class="recent__orders"> Recent Orders</h3>
+        
+       
+
+        
+    </div>
+
+
+</div>
+
+ 

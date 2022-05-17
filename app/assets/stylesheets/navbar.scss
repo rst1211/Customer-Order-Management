@@ -37,8 +37,12 @@ header.header__nav {
                 justify-content: center;
                 align-items: center;
                 // box-shadow: 0px 0px 7px #666;
-                border-radius: 10px;
                 padding: 5px 10px;
+                border-right: 1px solid #fff;
+                &:last-child {
+                    border-right:none;
+                } 
+                
                 // padding: ;
 
                 &:hover {

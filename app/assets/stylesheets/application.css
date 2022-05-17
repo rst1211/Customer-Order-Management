@@ -16,5 +16,33 @@
  * {
      margin: 0;
      padding: 0;
+
  }
 
+ td,th {
+     text-align: center !important;
+     
+ }
+
+td.address__of {
+    word-break: break-all;
+    width: 225px;
+    text-align: center;
+}
+
+h1.add__customer__heading {
+    text-align: center;
+    font-weight: 300;
+    
+}
+
+h3.recent__orders {
+    font-weight: 400;
+    color: #555;
+    text-align: center;
+
+}
+
+.margin__right {
+    margin-right: 20px;
+}

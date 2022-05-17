@@ -1,0 +1,55 @@
+<div class="container mt-5 w-50 border p-5 shadow">
+
+    <h1 class="add__customer__heading mb-4">Add Customer</h1>
+
+    <%= form_for @customer, url:add_customer_path do |form| %>
+
+
+        <% if @customer.errors.any? %>
+            <div class="alert alert-danger">
+                <% @customer.errors.full_messages.each do |message| %>
+                <div>
+                    <%= message  %>
+                </div>
+                <% end %>
+            </div>
+        <% end %>
+
+
+
+
+        <div class="mb-3">
+            <%= form.label :name %>    
+            <%= form.text_field :name, class: "form-control", placeholder: "Parimal Mahindrakar" %>
+        </div>
+
+        <div class="mb-3">
+            <%= form.label :email %>    
+            <%= form.text_field :email, class: "form-control", placeholder: "parimalm4653@gmail.com" %>
+        </div>
+
+        <div class="mb-3">
+            <%= form.label :phone %>    
+            <%= form.text_field :phone, class: "form-control", placeholder: "+91-9373739698" %>
+        </div>
+        <div class="mb-3">
+            <%= form.label :address %>    
+            <%= form.text_field :address, class: "form-control", placeholder: "Warje, Pune." %>
+        </div>
+
+
+
+        <div class="w-100 text-center pt-3 d-flex justify-content-between align-items-center">
+            <%= form.submit "Add Customer" ,class: "btn btn-primary ml-5" %>
+            <%= link_to "Go Back", root_path%>
+        </div>
+
+        <div class="text-left pt-3">
+        
+        </div>
+
+
+    <% end %>
+
+
+</div>
