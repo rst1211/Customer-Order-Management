@@ -8,8 +8,6 @@
 
 
 </div>
-
-
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
@@ -19,14 +17,13 @@
       <th scope="col">Phone</th>
       <th scope="col" class="address__of">Address</th>
       <th scope="col">Order Count</th>
-      <th scope="col">Add Order</th>
 
     </tr>
+ 
   </thead>
+  
   <tbody class="customer__infomations">
-    
-
-    <% i=1 %>
+  <% i=1 %>
     <% @customer.each do |cust| %>
 
      <tr>
@@ -36,19 +33,11 @@
       <td>+91-<%= cust.phone %> </td>
       <td class="address__of"><%= cust.address %> </td>
       <td>21</td>
-      <td> <a href="#"><i class="fa-solid fa-cart-plus"></i></a> </td>
     </tr>
       <% i=i+1 %>
     <% end %>
-
-
-
-
-
-   
-
-    
+  
   </tbody>
 </table>
-
+<%= will_paginate @customer%>
 </div>

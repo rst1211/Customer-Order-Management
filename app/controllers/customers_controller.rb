@@ -3,11 +3,14 @@ class CustomersController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @customer = Customer.all()
+        #byebug
+        @customer=Customer.paginate(page: params[:page],per_page: 5)
+        #@customer = Customer.all()
     end
 
 
     def new
+        #byebug
         @customer = Customer.new
     end
 
@@ -51,9 +54,6 @@ class CustomersController < ApplicationController
     def delete
         
         @customer = Customer.find_by(id: params.require(:format))  
-        puts("\n\n\nfasdfdsfsadfs")
-        puts(@customer.email)
-        puts("\n\n\n")
         @customer.destroy
         redirect_to(
           root_path,
