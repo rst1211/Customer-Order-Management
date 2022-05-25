@@ -3,9 +3,15 @@ class CustomersController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        #byebug
-        @customer=Customer.paginate(page: params[:page],per_page: 5)
-        #@customer = Customer.all()
+        if params[:orderby] && params[:ordering]
+            @customer = Customer.order("#{params[:orderby]} #{params[:ordering]}").paginate(:page => params[:page],per_page: 10)
+            render :index
+        end
+        if params[:search]
+            @customer = Customer.search(params[:search]).paginate(:page => params[:page],per_page: 10)
+        else
+            @customer = Customer.paginate(:page => params[:page],per_page: 10)
+        end
     end
 
 
