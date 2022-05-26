@@ -11,7 +11,7 @@ class CustomersController < ApplicationController
             @customer = current_user.customers.search(params[:search]).paginate(:page => params[:page],per_page: 10)
         else
             puts(current_user.customers)
-            @customer =current_user.customers.paginate(:page => params[:page],per_page: 10)
+            @customer = current_user.customers.paginate(:page => params[:page],per_page: 10)
         end
     end
 
@@ -75,15 +75,6 @@ class CustomersController < ApplicationController
     def customer_params 
         params.require(:customer).permit(:name, :email, :phone, :address, :user_id)
     end
-
-
-
-    
-
-
-
-
-
 
 
 end
