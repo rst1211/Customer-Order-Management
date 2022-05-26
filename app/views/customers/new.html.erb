@@ -1,6 +1,6 @@
 <div class="container mt-5 w-50 border p-5 shadow">
 
-    <h1 class="add__customer__heading mb-4">Add Customer</h1>
+    <h1 class="add__customer__heading mb-4">Add Customer </h1>
 
     <%= form_for @customer, url:add_customer_path do |form| %>
 
@@ -36,6 +36,8 @@
             <%= form.label :address %>    
             <%= form.text_field :address, class: "form-control"%>
         </div>
+
+        <%= form.hidden_field :user_id, value:  current_user.id %>
 
 
 

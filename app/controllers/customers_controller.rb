@@ -4,13 +4,14 @@ class CustomersController < ApplicationController
 
     def index
         if params[:orderby] && params[:ordering]
-            @customer = Customer.order("#{params[:orderby]} #{params[:ordering]}").paginate(:page => params[:page],per_page: 10)
+            @customer = current_user.customers.order("#{params[:orderby]} #{params[:ordering]}").paginate(:page => params[:page],per_page: 10)
             render :index
         end
         if params[:search]
-            @customer = Customer.search(params[:search]).paginate(:page => params[:page],per_page: 10)
+            @customer = current_user.customers.search(params[:search]).paginate(:page => params[:page],per_page: 10)
         else
-            @customer = Customer.paginate(:page => params[:page],per_page: 10)
+            puts(current_user.customers)
+            @customer =current_user.customers.paginate(:page => params[:page],per_page: 10)
         end
     end
 
@@ -31,7 +32,7 @@ class CustomersController < ApplicationController
     end
 
     def show
-        @customer = Customer.find_by(id: params.require(:id))
+        @customer = current_user.customers.find_by(id: params.require(:id))
     end
 
 
@@ -39,7 +40,7 @@ class CustomersController < ApplicationController
     # Update
 
     def edit   
-        @customer = Customer.find_by(id: params.require(:id))  
+        @customer = current_user.customers.find_by(id: params.require(:id))  
     end  
     
     def update   
@@ -59,7 +60,7 @@ class CustomersController < ApplicationController
 
     def delete
         
-        @customer = Customer.find_by(id: params.require(:format))  
+        @customer = current_user.customers.find_by(id: params.require(:format))  
         @customer.destroy
         redirect_to(
           root_path,
@@ -72,7 +73,7 @@ class CustomersController < ApplicationController
 
     private
     def customer_params 
-        params.require(:customer).permit(:name, :email, :phone, :address)
+        params.require(:customer).permit(:name, :email, :phone, :address, :user_id)
     end
 
 
