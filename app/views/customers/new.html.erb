@@ -1,6 +1,6 @@
 <div class="container mt-5 w-50 border p-5 shadow">
 
-    <h1 class="add__customer__heading mb-4">Add Customer</h1>
+    <h1 class="add__customer__heading mb-4">Add Customer </h1>
 
     <%= form_for @customer, url:add_customer_path do |form| %>
 
@@ -20,22 +20,24 @@
 
         <div class="mb-3">
             <%= form.label :name %>    
-            <%= form.text_field :name, class: "form-control", placeholder: "Parimal Mahindrakar" %>
+            <%= form.text_field :name, class: "form-control" %>
         </div>
 
         <div class="mb-3">
             <%= form.label :email %>    
-            <%= form.text_field :email, class: "form-control", placeholder: "parimalm4653@gmail.com" %>
+            <%= form.text_field :email, class: "form-control"%>
         </div>
 
         <div class="mb-3">
             <%= form.label :phone %>    
-            <%= form.text_field :phone, class: "form-control", placeholder: "+91-9373739698" %>
+            <%= form.text_field :phone, class: "form-control" %>
         </div>
         <div class="mb-3">
             <%= form.label :address %>    
-            <%= form.text_field :address, class: "form-control", placeholder: "Warje, Pune." %>
+            <%= form.text_field :address, class: "form-control"%>
         </div>
+
+        <%= form.hidden_field :user_id, value:  current_user.id %>
 
 
 
