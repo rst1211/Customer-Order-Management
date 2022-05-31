@@ -17,6 +17,24 @@ class CustomersController < ApplicationController
     end
 
 
+    def ajaxIndex
+        if params[:dataOrdering]
+            puts("fsdafsdf")
+            dataOrdering = params[:dataOrdering]
+            dataOrderingSplitted = dataOrdering.split("-")
+            customer = current_user.customers.order("#{dataOrderingSplitted[1]} #{dataOrderingSplitted[0]}")
+            render :json => {:customerInfo => customer}
+        end
+        
+        if params[:searchValue]
+            searchValue = params[:searchValue]
+            customer =  current_user.customers.search(searchValue)
+            render :json => {:customerInfo => customer}
+
+        end
+    end
+
+
     def new
         #byebug
         @customer = Customer.new

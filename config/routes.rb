@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   root "customers#index"
   get "/add-customer", to: "customers#new"
+  post "/get-ajax", to: "customers#ajaxIndex"
   post "/add-customer", to: "customers#create"
   get "/show-customer/:id", to: "customers#show"
 
