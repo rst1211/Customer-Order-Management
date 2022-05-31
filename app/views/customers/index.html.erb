@@ -11,12 +11,8 @@
   
  
      
-  <%= form_tag(root_path, :method => "get",class:"d-inline-flex", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search by customer name", class: "form-control" %>
-    <%= button_tag(type: :submit, class: 'btn btn-info') do %>
-                <i class="fa-solid fa-magnifying-glass"></i>
-    <% end %>
-  <% end %>
+     <input type="text" class="searchCustName" placeholder="Search by customer name" />
+
 
 
 
@@ -33,12 +29,8 @@
             <div class="sorting__functionality">
               
 
-              <%= link_to root_path({orderby: "created_at", ordering: "asc"}) do %>
-                <i class="fa-solid fa-arrow-up"></i>
-              <% end %>
-                <%= link_to root_path({orderby: "created_at", ordering: "desc"}) do %>
-                <i class="fa-solid fa-arrow-down"></i>
-              <% end %>
+              <i class="ajax-request fa-solid fa-arrow-up" data-ordering="asc-created_at"></i>
+              <i class="ajax-request fa-solid fa-arrow-down" data-ordering="desc-created_at"></i>
 
               
             </div>
@@ -56,12 +48,9 @@
 
             <div class="sorting__functionality">
              
-             <%= link_to root_path({orderby: "name", ordering: "asc"}) do %>
-                <i class="fa-solid fa-arrow-up"></i>
-              <% end %>
-                <%= link_to root_path({orderby: "name", ordering: "desc"}) do %>
-                <i class="fa-solid fa-arrow-down"></i>
-              <% end %>
+              <i class="ajax-request fa-solid fa-arrow-up" data-ordering="asc-name"></i>
+             <i class="ajax-request fa-solid fa-arrow-down" data-ordering="desc-name"></i>
+
 
 
 
