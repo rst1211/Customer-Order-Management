@@ -10,14 +10,22 @@ class CustomersController < ApplicationController
         if params[:search]
             @customer = current_user.customers.search(params[:search]).paginate(:page => params[:page],per_page: 10)
         else
-            puts(current_user.customers)
             @customer = current_user.customers.paginate(:page => params[:page],per_page: 10)
         end
     end
 
+    def ajaxIndex
+        if params[:dataOrdering]
+            dataOrdering = params[:dataOrdering]
+            dataOrderingSplitted = dataOrdering.split("-")
+            customer = current_user.customers.order("#{dataOrderingSplitted[1]} #{dataOrderingSplitted[0]}")
+            render :json => {:customerInfo => customer}
+        end
+       
+        
+    end
 
     def new
-        #byebug
         @customer = Customer.new
     end
 
