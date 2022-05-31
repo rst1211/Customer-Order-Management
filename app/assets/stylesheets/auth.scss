@@ -74,6 +74,18 @@ div.checkbox__login {
         width: 30px !important;
     }
 }
+i.ajax-request {
+    cursor: pointer;
+    color: #555;
+    transition: .1s;
+    &:active {
+        color: blue;
+        transform: scale(.9);
+    }
+    &:focus {
+        color: blue;
+    }
+}
 
 
 input.searchCustName {

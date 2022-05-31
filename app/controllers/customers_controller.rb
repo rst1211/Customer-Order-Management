@@ -19,7 +19,6 @@ class CustomersController < ApplicationController
 
     def ajaxIndex
         if params[:dataOrdering]
-            puts("fsdafsdf")
             dataOrdering = params[:dataOrdering]
             dataOrderingSplitted = dataOrdering.split("-")
             customer = current_user.customers.order("#{dataOrderingSplitted[1]} #{dataOrderingSplitted[0]}")
