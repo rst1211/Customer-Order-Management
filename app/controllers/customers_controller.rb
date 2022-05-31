@@ -3,10 +3,7 @@ class CustomersController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        if params[:orderby] && params[:ordering]
-            @customer = current_user.customers.order("#{params[:orderby]} #{params[:ordering]}").paginate(:page => params[:page],per_page: 10)
-            render :index
-        end
+        
         if params[:search]
             @customer = current_user.customers.search(params[:search]).paginate(:page => params[:page],per_page: 10)
         else
