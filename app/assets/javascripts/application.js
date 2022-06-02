@@ -15,17 +15,18 @@
 //= require turbolinks
 //= require_tree .
 
+let urlCustomer = "http://127.0.0.1:3000/get-ajax-customer/"
+
 var ajaxReqButtons = document.getElementsByClassName("ajax-request");
 for (var i = 0; i < ajaxReqButtons.length; i++) {
 
     ajaxReqButtons[i].addEventListener('click', function () {
 
         var dataOrdering = this.getAttribute("data-ordering")
-        var url = "http://127.0.0.1:3000/get-ajax/"
 
         console.log("before fetch !")
         
-        fetch(url, {
+        fetch(urlCustomer, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -52,7 +53,7 @@ for (var i = 0; i < ajaxReqButtons.length; i++) {
                     var email = data.customerInfo[i].email
                 
 
-                    str = '<tr>\
+                    ajaxResponse = '<tr>\
                         <th scope="row">'+(i+1)+'</th>\
                         <td> <a href=/show-customer/'+id+'> '+name+' </a> </td>\
                         <td>'+email+' </td>\
@@ -62,7 +63,7 @@ for (var i = 0; i < ajaxReqButtons.length; i++) {
                         </tr>'
 
 
-                    $("tbody.customer__infomations").append(str)
+                    $("tbody.customer__infomations").append(ajaxResponse)
                 }
 
         })
@@ -78,9 +79,8 @@ $("input.searchCustName").keyup(()=>{
     
     
     var searchValue = $("input.searchCustName").val()
-    var url = "http://127.0.0.1:3000/get-ajax/"
 
-    fetch(url, {
+    fetch(urlCustomer, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -107,7 +107,7 @@ $("input.searchCustName").keyup(()=>{
             var email = data.customerInfo[i].email
         
 
-            str = '<tr>\
+            ajaxResponse = '<tr>\
                 <th scope="row">'+(i+1)+'</th>\
                 <td> <a href=/show-customer/'+id+'> '+name+' </a> </td>\
                 <td>'+email+' </td>\
@@ -117,7 +117,7 @@ $("input.searchCustName").keyup(()=>{
                 </tr>'
 
 
-            $("tbody.customer__infomations").append(str)
+            $("tbody.customer__infomations").append(ajaxResponse)
         }
 
 })
