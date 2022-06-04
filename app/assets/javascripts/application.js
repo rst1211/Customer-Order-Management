@@ -21,8 +21,8 @@ for (var i = 0; i < ajaxReqButtons.length; i++) {
     ajaxReqButtons[i].addEventListener('click', function () {
 
         var dataOrdering = this.getAttribute("data-ordering")
-        var url = "http://127.0.0.1:3000/get-ajax/"
-
+        var url = "http://localhost:3000/get-ajax/"
+       
         console.log("before fetch !")
         
         fetch(url, {
@@ -78,7 +78,7 @@ $("input.searchCustName").keyup(()=>{
     
     
     var searchValue = $("input.searchCustName").val()
-    var url = "http://127.0.0.1:3000/get-ajax/"
+    var url = "http://localhost:3000/get-ajax/"
 
     fetch(url, {
         method: 'POST',
