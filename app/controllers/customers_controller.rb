@@ -54,15 +54,20 @@ class CustomersController < ApplicationController
     end  
     
     def update   
-        byebug
-        @customer = Customer.find_by(id: params.require(:format))    
-        if @customer.update_attributes(customer_params)   
-          flash[:notice] = 'Customer details updated!'   
-          redirect_to root_path   
-        else   
-          flash[:alert] = 'Failed to update details of customer!'   
-          render :edit   
-        end   
+        #byebug
+        @customer = Customer.find_by(id: params.require(:format))   
+        if @customer.nil?
+            flash[:alert] = 'Invalid customer!'   
+            redirect_to root_path
+        else
+            if @customer.update_attributes(customer_params)   
+            flash[:notice] = 'Customer details updated!'   
+            redirect_to root_path   
+            else   
+            flash[:alert] = 'Failed to update details of customer!'   
+            render :edit   
+            end   
+        end
     end
 
     # ==========================================
