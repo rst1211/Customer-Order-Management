@@ -160,17 +160,60 @@ RSpec.describe 'Customers', type: :request do
 #================================================================
 
   describe 'customers#update' do
+
+    context 'when customer not found' do
+      it 'is expected to redirect_to root path' do
+        execute_with_resource_sign_in(user) do
+          post update_customer_path, { customer: { id: customer.id, name: 'test name' }, format: 9999999 }
+          is_expected.to redirect_to(root_path)
+        end
+      end
+
+      it 'is expected to set flash' do
+        execute_with_resource_sign_in(user) do
+          post update_customer_path, { customer: { id: customer.id, name: 'test name' }, format: 9999999 }
+          expect(flash[:alert]).to eq('Invalid customer!')
+        end
+      end
+    end
+
+
+
     context 'when updates are valid' do
       it 'should update the customer' do
         execute_with_resource_sign_in(user) do
-          post update_customer_path(id: customer.id, customer: { name: 'test name' })
+          #byebug
+          post update_customer_path, { customer: { id: customer.id, name: 'test name' }, format: customer.id }
           expect(customer.reload.name).to eq('test name')
           is_expected.to redirect_to(root_path)
           expect(flash[:notice]).to eq('Customer details updated!')
         end
       end
     end
-  end
 
+
+    context 'when updates are not valid' do
+      it 'should render edit template with appropriate flash message' do
+        execute_with_resource_sign_in(user) do
+          #byebug
+          post update_customer_path, { customer: { id: customer.id, name: '' }, format: customer.id }
+          expect(customer.reload.name).not_to be_empty
+          is_expected.to render_template(:edit)
+          expect(flash[:alert]).to eq('Failed to update details of customer!')
+        end
+      end
+    end
+  end
+#===================================================================
+
+  describe 'customers#delete' do
+    it 'deletes the customer' do
+      execute_with_resource_sign_in(user) do 
+        delete '/delete-customer/',{ customer: { id: customer.id, name: 'test name' }, format: customer.id }
+        is_expected.to redirect_to root_path
+      end
+    end
+
+  end
 
 end
