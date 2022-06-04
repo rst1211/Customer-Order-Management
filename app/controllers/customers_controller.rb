@@ -32,6 +32,7 @@ class CustomersController < ApplicationController
 
 
     def create
+        #byebug
         @customer = Customer.new(customer_params)
         if @customer.save
             redirect_to root_path, notice: "Successfully created account !"
@@ -53,6 +54,7 @@ class CustomersController < ApplicationController
     end  
     
     def update   
+        byebug
         @customer = Customer.find_by(id: params.require(:format))    
         if @customer.update_attributes(customer_params)   
           flash[:notice] = 'Customer details updated!'   

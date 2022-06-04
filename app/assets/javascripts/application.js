@@ -80,6 +80,7 @@ $("input.searchCustName").keyup(()=>{
     
     var searchValue = $("input.searchCustName").val()
 
+
     fetch(urlCustomer, {
         method: 'POST',
         headers: {

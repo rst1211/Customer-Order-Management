@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
 
 
-  get "/update-customer/:id", to: "customers#edit"
+  get "/update-customer/:id", to: "customers#edit" , as: 'edit_customer'
   post "/update-customer", to: "customers#update"
   delete "/delete-customer/", to: "customers#delete"
 
