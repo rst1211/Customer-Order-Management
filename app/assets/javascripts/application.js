@@ -15,17 +15,43 @@
 //= require turbolinks
 //= require_tree .
 
+let urlCustomer = "http://localhost:3000/get-ajax-customer/"
+
+function applyAjaxResponse(data) {
+
+    $("tbody.customer__infomations").empty()
+
+    for (var i = 0; i < data.customerInfo.length; i++) {
+
+        var id = data.customerInfo[i].id
+        var name = data.customerInfo[i].name
+        var phone = data.customerInfo[i].phone
+        var address = data.customerInfo[i].address
+        var email = data.customerInfo[i].email
+    
+
+        ajaxResponse = '<tr>\
+            <th scope="row">'+(i+1)+'</th>\
+            <td> <a href=/show-customer/'+id+'> '+name+' </a> </td>\
+            <td>'+email+' </td>\
+            <td>+91-'+phone+' </td>\
+            <td class="address__of">'+address+' </td>\
+            <td>0</td>\
+            </tr>'
+
+
+        $("tbody.customer__infomations").append(ajaxResponse)
+    }
+}
+
 var ajaxReqButtons = document.getElementsByClassName("ajax-request");
 for (var i = 0; i < ajaxReqButtons.length; i++) {
 
     ajaxReqButtons[i].addEventListener('click', function () {
 
         var dataOrdering = this.getAttribute("data-ordering")
-        var url = "http://localhost:3000/get-ajax/"
-       
-        console.log("before fetch !")
         
-        fetch(url, {
+        fetch(urlCustomer, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -41,29 +67,7 @@ for (var i = 0; i < ajaxReqButtons.length; i++) {
         }).then((data) => {
 
 
-                $("tbody.customer__infomations").empty()
-
-                for (var i = 0; i < data.customerInfo.length; i++) {
-
-                    var id = data.customerInfo[i].id
-                    var name = data.customerInfo[i].name
-                    var phone = data.customerInfo[i].phone
-                    var address = data.customerInfo[i].address
-                    var email = data.customerInfo[i].email
-                
-
-                    str = '<tr>\
-                        <th scope="row">'+(i+1)+'</th>\
-                        <td> <a href=/show-customer/'+id+'> '+name+' </a> </td>\
-                        <td>'+email+' </td>\
-                        <td>+91-'+phone+' </td>\
-                        <td class="address__of">'+address+' </td>\
-                        <td>0</td>\
-                        </tr>'
-
-
-                    $("tbody.customer__infomations").append(str)
-                }
+            applyAjaxResponse(data)
 
         })
 
@@ -78,9 +82,9 @@ $("input.searchCustName").keyup(()=>{
     
     
     var searchValue = $("input.searchCustName").val()
-    var url = "http://localhost:3000/get-ajax/"
 
-    fetch(url, {
+
+    fetch(urlCustomer, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -95,32 +99,9 @@ $("input.searchCustName").keyup(()=>{
         return response.json()
     }).then((data) => {
 
+        applyAjaxResponse(data)
 
-        $("tbody.customer__infomations").empty()
-
-        for (var i = 0; i < data.customerInfo.length; i++) {
-
-            var id = data.customerInfo[i].id
-            var name = data.customerInfo[i].name
-            var phone = data.customerInfo[i].phone
-            var address = data.customerInfo[i].address
-            var email = data.customerInfo[i].email
-        
-
-            str = '<tr>\
-                <th scope="row">'+(i+1)+'</th>\
-                <td> <a href=/show-customer/'+id+'> '+name+' </a> </td>\
-                <td>'+email+' </td>\
-                <td>+91-'+phone+' </td>\
-                <td class="address__of">'+address+' </td>\
-                <td>0</td>\
-                </tr>'
-
-
-            $("tbody.customer__infomations").append(str)
-        }
-
-})
+    })
 
 
 })
