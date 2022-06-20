@@ -136,6 +136,23 @@ RSpec.describe 'Customers', type: :request do
 #===============================================================================
 
   describe 'customers#edit' do
+
+    context 'when customer not found' do
+      it 'is expected to redirect_to root path' do
+        execute_with_resource_sign_in(user) do
+          get edit_customer_path(id: 9999999 )
+          is_expected.to redirect_to(root_path)
+        end
+      end
+
+      it 'is expected to set flash' do
+        execute_with_resource_sign_in(user) do
+          get edit_customer_path(id: 9999999 )
+          expect(flash[:alert]).to eq('Invalid customer!')
+        end
+      end
+    end
+    
     context 'when customer id is valid' do
       it 'is expected to set customer instance variable' do
         execute_with_resource_sign_in(user) do 
