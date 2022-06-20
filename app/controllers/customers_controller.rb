@@ -50,7 +50,11 @@ class CustomersController < ApplicationController
     # Update
 
     def edit   
-        @customer = current_user.customers.find_by(id: params.require(:id))  
+        @customer = current_user.customers.find_by(id: params.require(:id)) 
+        if @customer.nil?
+            flash[:alert] = 'Invalid customer!'   
+            redirect_to root_path 
+        end
     end  
     
     def update   
